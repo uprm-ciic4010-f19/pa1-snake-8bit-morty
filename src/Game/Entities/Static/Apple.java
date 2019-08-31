@@ -12,6 +12,7 @@ public class Apple {
     public int xCoord;
     public int yCoord;
 
+    
     public Apple(Handler handler,int x, int y){
         this.handler=handler;
         this.xCoord=x; 
