@@ -14,7 +14,7 @@ public class Apple {
 
     public Apple(Handler handler,int x, int y){
         this.handler=handler;
-        this.xCoord=x;
+        this.xCoord=x; 
         this.yCoord=y;
     }
 

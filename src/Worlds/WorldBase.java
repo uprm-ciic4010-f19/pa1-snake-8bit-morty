@@ -24,6 +24,9 @@ public abstract class WorldBase {
     public int GridPixelsize;
 
     public Player player;
+    
+//    Color gusano
+	Color col = new Color(218,112,214,1);
 
     protected Handler handler;
 
@@ -48,14 +51,14 @@ public abstract class WorldBase {
     public void tick(){
 
 
-
+ 
     }
 
     public void render(Graphics g){
 
         for (int i = 0; i <= 800; i = i + GridPixelsize) {
 
-            g.setColor(Color.blue);
+            g.setColor(col);
             g.drawLine(0, i, handler.getWidth() , i);
             g.drawLine(i,0,i,handler.getHeight());
 

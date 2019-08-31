@@ -30,24 +30,33 @@ public class Player {
         direction= "Right";
         justAte = false;
         lenght= 1;
-
+ 
+        
     }
 
     public void tick(){
         moveCounter++;
-        if(moveCounter>=5) {
+        
+//        	MOOVE
+        if(moveCounter>=12) {
             checkCollisionAndMove();
             moveCounter=0;
         }
-        if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_UP)){
+        if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_W)){
             direction="Up";
-        }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_DOWN)){
+        }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_S)){
             direction="Down";
-        }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_LEFT)){
+        }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_A)){
             direction="Left";
-        }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_RIGHT)){
+        }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_D)){
             direction="Right";
-        }
+        }if (handler.getKeyManager().keyJustPressed(KeyEvent.VK_N)) {
+   		 handler.getWorld().body.addFirst(new Tail(xCoord, yCoord,handler));	
+		}if (handler.getKeyManager().keyJustPressed(KeyEvent.VK_PLUS)) {
+	    	moveCounter += 5;
+	    }
+	    
+		   
 
     }
 
@@ -96,12 +105,14 @@ public class Player {
             handler.getWorld().playerLocation[handler.getWorld().body.getLast().x][handler.getWorld().body.getLast().y] = false;
             handler.getWorld().body.removeLast();
             handler.getWorld().body.addFirst(new Tail(x, y,handler));
+            	
         }
 
     }
 
     public void render(Graphics g,Boolean[][] playeLocation){
         Random r = new Random();
+     
         for (int i = 0; i < handler.getWorld().GridWidthHeightPixelCount; i++) {
             for (int j = 0; j < handler.getWorld().GridWidthHeightPixelCount; j++) {
                 g.setColor(Color.GREEN);
@@ -115,8 +126,6 @@ public class Player {
 
             }
         }
-
-
     }
 
     public void Eat(){
@@ -207,6 +216,8 @@ public class Player {
                             tail=(new Tail(this.xCoord-1,this.yCoord,handler));
                         }else{
                             tail=(new Tail(this.xCoord+1,this.yCoord,handler));
+                            
+//                            TEE VIII
                         } System.out.println("Tu biscochito");
                     }
                 }else{
