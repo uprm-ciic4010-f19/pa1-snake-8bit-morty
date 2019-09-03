@@ -31,7 +31,7 @@ public class DisplayScreen {
         frame = new JFrame(title);
         frame.setSize(width, height);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.setResizable(false);
+        frame.setResizable(false); 
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
         frame.setBackground(Color.black);
@@ -47,6 +47,7 @@ public class DisplayScreen {
         canvas.setMaximumSize(new Dimension(width, height));
         canvas.setMinimumSize(new Dimension(width, height));
         canvas.setFocusable(false);
+        
 //        Back
         Color col = new Color(148,108,212);
 

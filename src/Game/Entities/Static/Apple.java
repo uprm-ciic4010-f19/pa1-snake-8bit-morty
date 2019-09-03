@@ -1,5 +1,9 @@
 package Game.Entities.Static;
 
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.font.GraphicAttribute;
+
 import Main.Handler;
 
 /**
@@ -11,13 +15,15 @@ public class Apple {
 
     public int xCoord;
     public int yCoord;
+    Graphics g;
 
     
     public Apple(Handler handler,int x, int y){
         this.handler=handler;
         this.xCoord=x; 
-        this.yCoord=y;
-    }
+        this.yCoord=y; 
+        
 
+    }
 
 }

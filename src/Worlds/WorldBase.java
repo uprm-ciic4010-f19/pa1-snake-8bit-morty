@@ -3,10 +3,14 @@ package Worlds;
 import Game.Entities.Dynamic.Player;
 import Game.Entities.Dynamic.Tail;
 import Game.Entities.Static.Apple;
+import Game.Entities.Static.BadApple;
 import Main.Handler;
 
 import java.awt.*;
+import java.awt.font.TextAttribute;
 import java.util.LinkedList;
+
+import com.sun.javafx.css.Size;
 
 
 /**
@@ -32,7 +36,8 @@ public abstract class WorldBase {
 
 
     public Boolean appleOnBoard;
-    protected Apple apple;
+    protected Apple apple; 
+    protected BadApple badApple;
     public Boolean[][] appleLocation;
 
 
@@ -50,18 +55,18 @@ public abstract class WorldBase {
     }
     public void tick(){
 
-
  
     }
-
-    public void render(Graphics g){
+    public String st = "Ricked Score: 1";
+    public void render(Graphics g){ 
 
         for (int i = 0; i <= 800; i = i + GridPixelsize) {
-
-            g.setColor(col);
+        	g.drawString(st, 4, 10);
+        	
+        	g.setColor(col);            
             g.drawLine(0, i, handler.getWidth() , i);
             g.drawLine(i,0,i,handler.getHeight());
-
+            
         }
 
 

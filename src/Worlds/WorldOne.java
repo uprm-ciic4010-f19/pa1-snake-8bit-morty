@@ -1,6 +1,7 @@
 package Worlds;
 
 import Game.Entities.Static.Apple;
+import Game.Entities.Static.BadApple;
 import Main.Handler;
 
 import java.awt.*;
@@ -10,7 +11,9 @@ import java.util.Random;
  * Created by AlexVR on 7/2/2018.
  */
 public class WorldOne extends WorldBase{
-
+	
+	
+    
     public WorldOne (Handler handler) {
         super(handler);
 
@@ -20,7 +23,7 @@ public class WorldOne extends WorldBase{
         playerLocation = new Boolean[GridWidthHeightPixelCount][GridWidthHeightPixelCount];
         appleLocation = new Boolean[GridWidthHeightPixelCount][GridWidthHeightPixelCount];
 
-    }
+    } 
 
     @Override
     public void tick() {
@@ -30,6 +33,10 @@ public class WorldOne extends WorldBase{
             appleOnBoard=true;
             int appleX = new Random().nextInt(handler.getWorld().GridWidthHeightPixelCount-1);
             int appley = new Random().nextInt(handler.getWorld().GridWidthHeightPixelCount-1);
+            int appleX2 = new Random().nextInt(handler.getWorld().GridWidthHeightPixelCount-1);
+            int appley2= new Random().nextInt(handler.getWorld().GridWidthHeightPixelCount-1);
+            
+            
 
             //change coordinates till one is selected in which the player isnt standing.
             boolean goodCoordinates=false;
@@ -40,7 +47,10 @@ public class WorldOne extends WorldBase{
             }while(!goodCoordinates);
 
             apple = new Apple(handler,appleX,appley);
+            badApple = new BadApple(handler, appleX2, appley2);
             appleLocation[appleX][appley]=true;
+            appleLocation[appleX2][appley2]=true;
+            
 
         }
     }
@@ -48,6 +58,7 @@ public class WorldOne extends WorldBase{
     @Override
     public void render(Graphics g){
         super.render(g);
+       
         player.render(g,playerLocation);
     }
 
