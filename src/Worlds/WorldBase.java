@@ -57,11 +57,11 @@ public abstract class WorldBase {
 
  
     }
-    public String st = "Ricked Score: 1";
+   
     public void render(Graphics g){ 
 
         for (int i = 0; i <= 800; i = i + GridPixelsize) {
-        	g.drawString(st, 4, 10);
+        	
         	
         	g.setColor(col);            
             g.drawLine(0, i, handler.getWidth() , i);

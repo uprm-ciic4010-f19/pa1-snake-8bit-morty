@@ -17,7 +17,8 @@ public class Player {
 
 	public int xCoord;
 	public int yCoord;
-	public int score;
+	public double score;
+	public static double trackscore = 0;////
 
 	public int moveCounter, speed = 2;
 
@@ -32,6 +33,7 @@ public class Player {
 		justAte = false;
 		lenght = 1;
 		score = 0;
+		
 
 	}
 
@@ -127,18 +129,12 @@ public class Player {
 		if (handler.getWorld().appleLocation[xCoord][yCoord]) {
 			Eat();
 			speed -= 10;
-			score++;
-			score = (int) Math.sqrt(2*score+1);
+			
+			score = Math.sqrt(2*score+1);/////
+			trackscore = score;
 			System.out.println(score);
 		}
-		if (handler.getWorld().appleLocation[xCoord][yCoord]) {
-			Eat();
-			speed -= 10;
-			score++;
-			score = (int) Math.sqrt(2*score+1);
-			System.out.println(score);
-		}
-
+		
 		if (!handler.getWorld().body.isEmpty()) {
 			handler.getWorld().playerLocation[handler.getWorld().body.getLast().x][handler.getWorld().body
 					.getLast().y] = false;
@@ -163,6 +159,8 @@ public class Player {
 
 			}
 		}
+		
+		paintComponent(g, 10, 45);////
 	}
 
 	public void Eat() {
@@ -299,5 +297,14 @@ public class Player {
 	public void setJustAte(boolean justAte) {
 		this.justAte = justAte;
 	}
+	
+	public static void paintComponent( Graphics g, int x, int y) {/////
+		g.setColor( Color.GREEN );
+		g.setFont( new Font( "Tahoma", Font.BOLD, 44 ) );
+		g.drawString("Score: " + trackscore,x,y);
+		
+	}
+	
+	
 
 }
