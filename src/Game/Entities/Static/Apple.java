@@ -31,11 +31,11 @@ public class Apple {
     }
     public boolean isGood() {
     	if (good) {
-    		if (Player.stepCount > 600) {
-    			return false;
+    		if (Player.stepCount < 600) {
+    			return true;
     		}
     		else {
-    			return true;
+    			return false;
     			
     		}
 		}

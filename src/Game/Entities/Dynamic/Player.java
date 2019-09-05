@@ -52,35 +52,32 @@ public class Player {
 
 		if (handler.getKeyManager().keyJustPressed(KeyEvent.VK_W)
 				|| handler.getKeyManager().keyJustPressed(KeyEvent.VK_UP)) {
-//			stepCount++;
 			if (!(direction == "Down")) {				
 				direction = "Up";
 			}
+			
 		}
 		if (handler.getKeyManager().keyJustPressed(KeyEvent.VK_S)
 				|| handler.getKeyManager().keyJustPressed(KeyEvent.VK_DOWN)) {
-//			stepCount++;
 			if (!(direction == "Up")) {				
 				direction = "Down";
 			}
 		}
 		if (handler.getKeyManager().keyJustPressed(KeyEvent.VK_A)
 				|| handler.getKeyManager().keyJustPressed(KeyEvent.VK_LEFT)) {
-//			stepCount++;
+
 			if (!(direction == "Right")) {				
 				direction = "Left";
 			}
 		}
 		if (handler.getKeyManager().keyJustPressed(KeyEvent.VK_D)
 				|| handler.getKeyManager().keyJustPressed(KeyEvent.VK_RIGHT)) {
-//			stepCount++;
 
 			if (!(direction == "Left")) {				
 				direction = "Right";
 			}
 		}
 		if (handler.getKeyManager().keyJustPressed(KeyEvent.VK_N)) {
-//			stepCount++;
 
 			handler.getWorld().body.addFirst(new Tail(xCoord, yCoord, handler));
 		}
@@ -104,21 +101,26 @@ public class Player {
 
 	public void checkCollisionAndMove() {
 		handler.getWorld().playerLocation[xCoord][yCoord] = false;
+	
 		int x = xCoord;
 		int y = yCoord;
+			
 		switch (direction) {
 		case "Left":
+
 			if (xCoord == 0) {
-				kill();
+//				kill();
+				
 				xCoord = handler.getWorld().GridWidthHeightPixelCount-1;
 			} else {
 				xCoord--;
 			}
 			break;
 		case "Right":
+			
 			if (xCoord == handler.getWorld().GridWidthHeightPixelCount - 1) {
 				xCoord = 0;
-				kill();
+//				kill();
 			} else {
 				xCoord++;
 			}
@@ -127,7 +129,7 @@ public class Player {
 			
 			if (yCoord == 0) {
 				yCoord = handler.getWorld().GridWidthHeightPixelCount-1;
-				kill();
+//				kill();
 			} else {
 				yCoord--;
 			}
@@ -136,12 +138,17 @@ public class Player {
 
 			if (yCoord == handler.getWorld().GridWidthHeightPixelCount-1) {
 				yCoord = 0;
-				kill();
+//				kill();
 			} else {
 				yCoord++;
 			}
 			break;
 	
+		}
+		if (!handler.getWorld().body.isEmpty()) {
+			if (handler.getWorld().playerLocation[xCoord][yCoord]) {
+				kill();
+			}
 		}
 		handler.getWorld().playerLocation[xCoord][yCoord] = true;
 
@@ -149,8 +156,13 @@ public class Player {
 //			stepCount++;
 			Eat();
 			speed -= 8;
-			
-			score = Math.sqrt(2*score+1);/////
+			if (Apple.good) {
+				score = Math.sqrt(2*score+1);/////				
+			}
+			if (!Apple.good) {
+				score = -Math.sqrt(2*score+1);/////				
+
+			}
 			trackscore = score;
 			System.out.println(score);
 		}
@@ -158,6 +170,7 @@ public class Player {
 //			stepCount++;
 		}
 		
+	
 		if (!handler.getWorld().body.isEmpty()) {
 			handler.getWorld().playerLocation[handler.getWorld().body.getLast().x][handler.getWorld().body
 					.getLast().y] = false;
@@ -165,6 +178,9 @@ public class Player {
 			handler.getWorld().body.addFirst(new Tail(x, y, handler));
 
 		}
+		
+		
+		
 
 	}
 
@@ -211,6 +227,7 @@ public class Player {
 
 		switch (direction) {
 		case "Left":
+			
 			if (handler.getWorld().body.isEmpty()) {
 				if (this.xCoord != handler.getWorld().GridWidthHeightPixelCount - 1) {
 					tail = new Tail(this.xCoord + 1, this.yCoord, handler);
@@ -320,7 +337,8 @@ public class Player {
 		for (int i = 0; i < handler.getWorld().GridWidthHeightPixelCount; i++) {
 			for (int j = 0; j < handler.getWorld().GridWidthHeightPixelCount; j++) {
 
-//		        State.setState(handler.getGame().gameOver); 
+		        State.setState(handler.getGame().menuState); 
+//				handler.getWorld().playerLocation[tail.x][tail.y] = true;
 
 				
 //				put false in the following line to break game
