@@ -6,11 +6,14 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.util.Random;
 
+import Game.Entities.Static.Apple;
+import Game.GameStates.PauseState;
+import Game.GameStates.State;
+
 /**
  * Created by AlexVR on 7/2/2018.
  */
 public class Player {
-
 	public int lenght;
 	public boolean justAte;
 	private Handler handler;
@@ -19,7 +22,7 @@ public class Player {
 	public int yCoord;
 	public double score;
 	public static double trackscore = 0;////
-
+	public static int stepCount = 0;
 	public int moveCounter, speed = 2;
 
 	public String direction;// is your first name one?
@@ -33,41 +36,58 @@ public class Player {
 		justAte = false;
 		lenght = 1;
 		score = 0;
-		
+		stepCount = 0;
 
 	}
 
 	public void tick() {
 		moveCounter++;
 //        	MOOVE
+		stepCount++;
 		if (moveCounter > speed) {
 			moveCounter = 0;
 			checkCollisionAndMove();
+			
 		}
 
 		if (handler.getKeyManager().keyJustPressed(KeyEvent.VK_W)
 				|| handler.getKeyManager().keyJustPressed(KeyEvent.VK_UP)) {
-
-			direction = "Up";
+//			stepCount++;
+			if (!(direction == "Down")) {				
+				direction = "Up";
+			}
 		}
 		if (handler.getKeyManager().keyJustPressed(KeyEvent.VK_S)
 				|| handler.getKeyManager().keyJustPressed(KeyEvent.VK_DOWN)) {
-			direction = "Down";
+//			stepCount++;
+			if (!(direction == "Up")) {				
+				direction = "Down";
+			}
 		}
 		if (handler.getKeyManager().keyJustPressed(KeyEvent.VK_A)
 				|| handler.getKeyManager().keyJustPressed(KeyEvent.VK_LEFT)) {
-			direction = "Left";
+//			stepCount++;
+			if (!(direction == "Right")) {				
+				direction = "Left";
+			}
 		}
 		if (handler.getKeyManager().keyJustPressed(KeyEvent.VK_D)
 				|| handler.getKeyManager().keyJustPressed(KeyEvent.VK_RIGHT)) {
-			direction = "Right";
+//			stepCount++;
+
+			if (!(direction == "Left")) {				
+				direction = "Right";
+			}
 		}
 		if (handler.getKeyManager().keyJustPressed(KeyEvent.VK_N)) {
+//			stepCount++;
+
 			handler.getWorld().body.addFirst(new Tail(xCoord, yCoord, handler));
 		}
 		if (handler.getKeyManager().keyJustPressed(KeyEvent.VK_PLUS)
 				|| handler.getKeyManager().keyJustPressed(KeyEvent.VK_P)
 				|| handler.getKeyManager().keyJustPressed(KeyEvent.VK_EQUALS)) {
+			
 			speed--;
 		}
 		if (handler.getKeyManager().keyJustPressed(KeyEvent.VK_MINUS)
@@ -75,13 +95,9 @@ public class Player {
 			speed++;
 		}
 		if (handler.getKeyManager().keyJustPressed(KeyEvent.VK_ESCAPE)) {
-			int count = 0;
-			while (count !=0) {
-					System.out.println("wait");
-					if (handler.getKeyManager().keyJustPressed(KeyEvent.VK_ESCAPE)) {
-						count++;
-					}
-			}
+
+	        State.setState(handler.getGame().pauseState); 
+
 		}
 
 	}
@@ -108,6 +124,7 @@ public class Player {
 			}
 			break;
 		case "Up":
+			
 			if (yCoord == 0) {
 				yCoord = handler.getWorld().GridWidthHeightPixelCount-1;
 				kill();
@@ -116,23 +133,29 @@ public class Player {
 			}
 			break;
 		case "Down":
-			if (yCoord == handler.getWorld().GridWidthHeightPixelCount - 1) {
+
+			if (yCoord == handler.getWorld().GridWidthHeightPixelCount-1) {
 				yCoord = 0;
 				kill();
 			} else {
 				yCoord++;
 			}
 			break;
+	
 		}
 		handler.getWorld().playerLocation[xCoord][yCoord] = true;
 
 		if (handler.getWorld().appleLocation[xCoord][yCoord]) {
+//			stepCount++;
 			Eat();
-			speed -= 10;
+			speed -= 8;
 			
 			score = Math.sqrt(2*score+1);/////
 			trackscore = score;
 			System.out.println(score);
+		}
+		else {
+//			stepCount++;
 		}
 		
 		if (!handler.getWorld().body.isEmpty()) {
@@ -147,15 +170,32 @@ public class Player {
 
 	public void render(Graphics g, Boolean[][] playeLocation) {
 		Random r = new Random();
+		System.out.println(stepCount);
 
 		for (int i = 0; i < handler.getWorld().GridWidthHeightPixelCount; i++) {
 			for (int j = 0; j < handler.getWorld().GridWidthHeightPixelCount; j++) {
-				g.setColor(Color.GREEN);
 
 				if (playeLocation[i][j] || handler.getWorld().appleLocation[i][j]) {
+					g.setColor(Color.GREEN);
+					g.fillRect((i * handler.getWorld().GridPixelsize), (j * handler.getWorld().GridPixelsize),
+							handler.getWorld().GridPixelsize, handler.getWorld().GridPixelsize);
+					
+				}
+				if (handler.getWorld().appleLocation[i][j]) {
+					boolean goodApple = Apple.good;
+					if (goodApple) {
+						g.setColor(Color.RED);
+						System.out.println("good Apple");
+					}
+					else {
+						g.setColor(Color.BLACK);
+						System.out.println("bad Apple");
+					}
+//					g.setColor(Color.RED);
 					g.fillRect((i * handler.getWorld().GridPixelsize), (j * handler.getWorld().GridPixelsize),
 							handler.getWorld().GridPixelsize, handler.getWorld().GridPixelsize);
 				}
+
 
 			}
 		}
@@ -280,7 +320,8 @@ public class Player {
 		for (int i = 0; i < handler.getWorld().GridWidthHeightPixelCount; i++) {
 			for (int j = 0; j < handler.getWorld().GridWidthHeightPixelCount; j++) {
 
-				
+//		        State.setState(handler.getGame().gameOver); 
+
 				
 //				put false in the following line to break game
 				handler.getWorld().playerLocation[i][j] = false;

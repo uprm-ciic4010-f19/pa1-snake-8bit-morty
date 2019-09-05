@@ -3,7 +3,6 @@ package Worlds;
 import Game.Entities.Dynamic.Player;
 import Game.Entities.Dynamic.Tail;
 import Game.Entities.Static.Apple;
-import Game.Entities.Static.BadApple;
 import Main.Handler;
 
 import java.awt.*;
@@ -37,7 +36,6 @@ public abstract class WorldBase {
 
     public Boolean appleOnBoard;
     protected Apple apple; 
-    protected BadApple badApple;
     public Boolean[][] appleLocation;
 
 

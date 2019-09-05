@@ -1,5 +1,7 @@
 package Main;
 
+import Game.Entities.Dynamic.Player;
+import Game.Entities.Static.Apple;
 import Input.KeyManager;
 import Input.MouseManager;
 import Worlds.WorldBase;
@@ -27,14 +29,13 @@ public class Handler {
         return game.getHeight();
     }
 
-    public GameSetUp getGame() {
-        return game;
-    }
 
     public void setGame(GameSetUp game) {
         this.game = game;
     }
-
+    public GameSetUp getGame() {
+        return game;
+    }
     public KeyManager getKeyManager(){
         return game.getKeyManager();
     }
@@ -47,9 +48,14 @@ public class Handler {
         return world;
     }
 
+    
+    public Player getPlayer() {
+    	return getPlayer();
+    }
     public void setWorld(WorldBase world) {
         this.world = world;
     }
+
 
 
 }

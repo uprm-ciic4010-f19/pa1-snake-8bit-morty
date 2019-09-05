@@ -1,7 +1,6 @@
 package Worlds;
 
 import Game.Entities.Static.Apple;
-import Game.Entities.Static.BadApple;
 import Main.Handler;
 
 import java.awt.*;
@@ -33,8 +32,6 @@ public class WorldOne extends WorldBase{
             appleOnBoard=true;
             int appleX = new Random().nextInt(handler.getWorld().GridWidthHeightPixelCount-1);
             int appley = new Random().nextInt(handler.getWorld().GridWidthHeightPixelCount-1);
-            int appleX2 = new Random().nextInt(handler.getWorld().GridWidthHeightPixelCount-1);
-            int appley2= new Random().nextInt(handler.getWorld().GridWidthHeightPixelCount-1);
             
             
 
@@ -47,9 +44,7 @@ public class WorldOne extends WorldBase{
             }while(!goodCoordinates);
 
             apple = new Apple(handler,appleX,appley);
-            badApple = new BadApple(handler, appleX2, appley2);
             appleLocation[appleX][appley]=true;
-            appleLocation[appleX2][appley2]=true;
             
 
         }

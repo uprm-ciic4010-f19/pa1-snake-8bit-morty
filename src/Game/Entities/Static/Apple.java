@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.font.GraphicAttribute;
 
+import Game.Entities.Dynamic.Player;
 import Main.Handler;
 
 /**
@@ -14,7 +15,9 @@ public class Apple {
     private Handler handler;
 
     public int xCoord;
-    public int yCoord;
+    public int yCoord, born, dead;
+    public static boolean good;
+    public boolean isFresh = true;
     Graphics g;
 
     
@@ -22,8 +25,23 @@ public class Apple {
         this.handler=handler;
         this.xCoord=x; 
         this.yCoord=y; 
-        
-
+        this.born = Player.stepCount;
+        this.dead = born + 400;
+        this.isFresh = isGood();
+    }
+    public boolean isGood() {
+    	if (good) {
+    		if (Player.stepCount > 600) {
+    			return false;
+    		}
+    		else {
+    			return true;
+    			
+    		}
+		}
+    	
+		return good;
+    	
     }
 
 }
