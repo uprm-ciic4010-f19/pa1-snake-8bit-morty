@@ -337,7 +337,7 @@ public class Player {
 		for (int i = 0; i < handler.getWorld().GridWidthHeightPixelCount; i++) {
 			for (int j = 0; j < handler.getWorld().GridWidthHeightPixelCount; j++) {
 
-		        State.setState(handler.getGame().menuState); 
+		        State.setState(handler.getGame().gameoverState); 
 //				handler.getWorld().playerLocation[tail.x][tail.y] = true;
 
 				
