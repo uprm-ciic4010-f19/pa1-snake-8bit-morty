@@ -16,10 +16,12 @@ public class Handler {
 
     private GameSetUp game;
     private WorldBase world;
+    private Apple apple;
 
     public Handler(GameSetUp game){
         this.game = game;
     }
+ 
 
     public int getWidth(){
         return game.getWidth();
@@ -29,7 +31,8 @@ public class Handler {
         return game.getHeight();
     }
 
-
+    	
+    
     public void setGame(GameSetUp game) {
         this.game = game;
     }
@@ -55,6 +58,9 @@ public class Handler {
     public void setWorld(WorldBase world) {
         this.world = world;
     }
+	public Apple getApple(Apple a) {
+		return a;
+	}
 
 
 

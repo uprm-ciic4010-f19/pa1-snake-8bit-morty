@@ -4,10 +4,8 @@ import Main.Handler;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
-import java.util.Random;
 
 import Game.Entities.Static.Apple;
-import Game.GameStates.PauseState;
 import Game.GameStates.State;
 
 /**
@@ -17,7 +15,6 @@ public class Player {
 	public int lenght;
 	public boolean justAte;
 	private Handler handler;
-
 	public int xCoord;
 	public int yCoord;
 	public double score;
@@ -43,37 +40,39 @@ public class Player {
 	public void tick() {
 		moveCounter++;
 //        	MOOVE
-		stepCount++;
+//		stepCount++;
 		if (moveCounter > speed) {
 			moveCounter = 0;
 			checkCollisionAndMove();
-			
+			stepCount++;
+
 		}
 
 		if (handler.getKeyManager().keyJustPressed(KeyEvent.VK_W)
 				|| handler.getKeyManager().keyJustPressed(KeyEvent.VK_UP)) {
-			if (!(direction == "Down")) {				
+
+			if (!(direction == "Down")) {
 				direction = "Up";
 			}
-			
+
 		}
 		if (handler.getKeyManager().keyJustPressed(KeyEvent.VK_S)
 				|| handler.getKeyManager().keyJustPressed(KeyEvent.VK_DOWN)) {
-			if (!(direction == "Up")) {				
+			if (!(direction == "Up")) {
 				direction = "Down";
 			}
 		}
 		if (handler.getKeyManager().keyJustPressed(KeyEvent.VK_A)
 				|| handler.getKeyManager().keyJustPressed(KeyEvent.VK_LEFT)) {
 
-			if (!(direction == "Right")) {				
+			if (!(direction == "Right")) {
 				direction = "Left";
 			}
 		}
 		if (handler.getKeyManager().keyJustPressed(KeyEvent.VK_D)
 				|| handler.getKeyManager().keyJustPressed(KeyEvent.VK_RIGHT)) {
 
-			if (!(direction == "Left")) {				
+			if (!(direction == "Left")) {
 				direction = "Right";
 			}
 		}
@@ -82,18 +81,19 @@ public class Player {
 			handler.getWorld().body.addFirst(new Tail(xCoord, yCoord, handler));
 		}
 		if (handler.getKeyManager().keyJustPressed(KeyEvent.VK_PLUS)
-				|| handler.getKeyManager().keyJustPressed(KeyEvent.VK_P)
 				|| handler.getKeyManager().keyJustPressed(KeyEvent.VK_EQUALS)) {
-			
+
 			speed--;
 		}
-		if (handler.getKeyManager().keyJustPressed(KeyEvent.VK_MINUS)
-				|| handler.getKeyManager().keyJustPressed(KeyEvent.VK_O)) {
+		if (handler.getKeyManager().keyJustPressed(KeyEvent.VK_MINUS)) {
 			speed++;
+		}
+		if (handler.getKeyManager().keyJustPressed(KeyEvent.VK_H)) {
+			speed = 10;
 		}
 		if (handler.getKeyManager().keyJustPressed(KeyEvent.VK_ESCAPE)) {
 
-	        State.setState(handler.getGame().pauseState); 
+			State.setState(handler.getGame().pauseState);
 
 		}
 
@@ -101,23 +101,24 @@ public class Player {
 
 	public void checkCollisionAndMove() {
 		handler.getWorld().playerLocation[xCoord][yCoord] = false;
-	
+
 		int x = xCoord;
 		int y = yCoord;
-			
+
 		switch (direction) {
+
 		case "Left":
 
 			if (xCoord == 0) {
 //				kill();
-				
-				xCoord = handler.getWorld().GridWidthHeightPixelCount-1;
+
+				xCoord = handler.getWorld().GridWidthHeightPixelCount - 1;
 			} else {
 				xCoord--;
 			}
 			break;
 		case "Right":
-			
+
 			if (xCoord == handler.getWorld().GridWidthHeightPixelCount - 1) {
 				xCoord = 0;
 //				kill();
@@ -126,24 +127,23 @@ public class Player {
 			}
 			break;
 		case "Up":
-			
+
 			if (yCoord == 0) {
-				yCoord = handler.getWorld().GridWidthHeightPixelCount-1;
-//				kill();
+				yCoord = handler.getWorld().GridWidthHeightPixelCount - 1;
 			} else {
 				yCoord--;
 			}
 			break;
 		case "Down":
 
-			if (yCoord == handler.getWorld().GridWidthHeightPixelCount-1) {
+			if (yCoord == handler.getWorld().GridWidthHeightPixelCount - 1) {
 				yCoord = 0;
 //				kill();
 			} else {
 				yCoord++;
 			}
 			break;
-	
+
 		}
 		if (!handler.getWorld().body.isEmpty()) {
 			if (handler.getWorld().playerLocation[xCoord][yCoord]) {
@@ -153,24 +153,30 @@ public class Player {
 		handler.getWorld().playerLocation[xCoord][yCoord] = true;
 
 		if (handler.getWorld().appleLocation[xCoord][yCoord]) {
-//			stepCount++;
 			Eat();
 			speed -= 8;
-			if (Apple.good) {
-				score = Math.sqrt(2*score+1);/////				
+			if (Apple.isGood()) {
+				score = Math.sqrt(2 * score + 1);/////
 			}
-			if (!Apple.good) {
-				score = -Math.sqrt(2*score+1);/////				
+			if (!Apple.isGood()) {
+				if (!handler.getWorld().body.isEmpty()) {
+					
+				score = -Math.sqrt(2 * score + 1);/////
+				handler.getWorld().playerLocation[handler.getWorld().body.getLast().x][handler.getWorld().body.getLast().y] = false;
+				handler.getWorld().body.removeLast();
 
+				handler.getWorld().playerLocation[handler.getWorld().body.getLast().x][handler.getWorld().body.getLast().y] = false;
+				handler.getWorld().body.removeLast();
+				handler.getWorld().appleLocation[x][y] = false;
+				}
+				else {
+					kill();
+				}
 			}
 			trackscore = score;
 			System.out.println(score);
 		}
-		else {
-//			stepCount++;
-		}
-		
-	
+
 		if (!handler.getWorld().body.isEmpty()) {
 			handler.getWorld().playerLocation[handler.getWorld().body.getLast().x][handler.getWorld().body
 					.getLast().y] = false;
@@ -178,15 +184,10 @@ public class Player {
 			handler.getWorld().body.addFirst(new Tail(x, y, handler));
 
 		}
-		
-		
-		
 
 	}
 
 	public void render(Graphics g, Boolean[][] playeLocation) {
-		Random r = new Random();
-		System.out.println(stepCount);
 
 		for (int i = 0; i < handler.getWorld().GridWidthHeightPixelCount; i++) {
 			for (int j = 0; j < handler.getWorld().GridWidthHeightPixelCount; j++) {
@@ -195,27 +196,23 @@ public class Player {
 					g.setColor(Color.GREEN);
 					g.fillRect((i * handler.getWorld().GridPixelsize), (j * handler.getWorld().GridPixelsize),
 							handler.getWorld().GridPixelsize, handler.getWorld().GridPixelsize);
-					
+
 				}
 				if (handler.getWorld().appleLocation[i][j]) {
-					boolean goodApple = Apple.good;
-					if (goodApple) {
+					if (Apple.isGood()) {
 						g.setColor(Color.RED);
-						System.out.println("good Apple");
-					}
-					else {
+//						GOOD APPLE
+					} else {
 						g.setColor(Color.BLACK);
-						System.out.println("bad Apple");
+//						BAD APPLE
 					}
-//					g.setColor(Color.RED);
 					g.fillRect((i * handler.getWorld().GridPixelsize), (j * handler.getWorld().GridPixelsize),
 							handler.getWorld().GridPixelsize, handler.getWorld().GridPixelsize);
 				}
 
-
 			}
 		}
-		
+
 		paintComponent(g, 10, 45);////
 	}
 
@@ -227,8 +224,9 @@ public class Player {
 
 		switch (direction) {
 		case "Left":
-			
+
 			if (handler.getWorld().body.isEmpty()) {
+
 				if (this.xCoord != handler.getWorld().GridWidthHeightPixelCount - 1) {
 					tail = new Tail(this.xCoord + 1, this.yCoord, handler);
 				} else {
@@ -238,6 +236,7 @@ public class Player {
 						tail = new Tail(this.xCoord, this.yCoord + 1, handler);
 					}
 				}
+
 			} else {
 				if (handler.getWorld().body.getLast().x != handler.getWorld().GridWidthHeightPixelCount - 1) {
 					tail = new Tail(handler.getWorld().body.getLast().x + 1, this.yCoord, handler);
@@ -246,11 +245,10 @@ public class Player {
 						tail = new Tail(handler.getWorld().body.getLast().x, this.yCoord - 1, handler);
 					} else {
 						tail = new Tail(handler.getWorld().body.getLast().x, this.yCoord + 1, handler);
-
 					}
 				}
-
 			}
+
 			break;
 		case "Right":
 			if (handler.getWorld().body.isEmpty()) {
@@ -337,10 +335,9 @@ public class Player {
 		for (int i = 0; i < handler.getWorld().GridWidthHeightPixelCount; i++) {
 			for (int j = 0; j < handler.getWorld().GridWidthHeightPixelCount; j++) {
 
-		        State.setState(handler.getGame().gameoverState); 
+				State.setState(handler.getGame().gameoverState);
 //				handler.getWorld().playerLocation[tail.x][tail.y] = true;
 
-				
 //				put false in the following line to break game
 				handler.getWorld().playerLocation[i][j] = false;
 
@@ -356,14 +353,11 @@ public class Player {
 	public void setJustAte(boolean justAte) {
 		this.justAte = justAte;
 	}
-	
-	public static void paintComponent( Graphics g, int x, int y) {/////
-		g.setColor( Color.GREEN );
-		g.setFont( new Font( "Tahoma", Font.BOLD, 44 ) );
-		g.drawString("Score: " + trackscore,x,y);
-		
-	}
-	
-	
 
+	public static void paintComponent(Graphics g, int x, int y) {/////
+		g.setColor(Color.GREEN);
+		g.setFont(new Font("Tahoma", Font.BOLD, 44));
+		g.drawString("Score: " + trackscore, x, y);
+
+	}
 }

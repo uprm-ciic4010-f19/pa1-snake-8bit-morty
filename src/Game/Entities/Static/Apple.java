@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.font.GraphicAttribute;
 
+import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
+
 import Game.Entities.Dynamic.Player;
 import Main.Handler;
 
@@ -12,36 +14,40 @@ import Main.Handler;
  */
 public class Apple {
 
-    private Handler handler;
+	private Handler handler;
 
-    public int xCoord;
-    public int yCoord, born, dead;
-    public static boolean good;
-    public boolean isFresh = true;
-    Graphics g;
+	public int xCoord;
+	public int yCoord, born;
 
-    
-    public Apple(Handler handler,int x, int y){
-        this.handler=handler;
-        this.xCoord=x; 
-        this.yCoord=y; 
-        this.born = Player.stepCount;
-        this.isFresh = isGood();
-        
-    }
-    public boolean isGood() {
-    	if (isFresh) {
-    		if (Player.stepCount > (born+600)) {
-    			good = false;
-    		}
-    		else {
-    			good = true;
-    			
-    		}
-		}
-    	
-		return good;
-    	
-    }
+	public static int dead;
+	public static boolean good;
 
-}
+	   public Apple(Handler handler,int x, int y){
+		   good = true;
+	        this.handler=handler;
+	        this.xCoord=x; 
+	        this.yCoord=y; 
+	        this.born = Player.stepCount;
+	        
+//	        STEP TIMMER
+	        Apple.dead = born + 50;
+	     
+	        
+	    }
+	  
+	    public static boolean isGood() {
+	    	
+	    	if (Player.stepCount > dead) {
+				good = false;
+			}
+	        else {
+	        	good = true;
+	        }
+	    	if (Player.stepCount % 50 == 0) {				
+	    		System.out.println("Apple is " + good + " >> " + Player.stepCount);
+			}
+			return good;
+	    }
+
+	}
+
