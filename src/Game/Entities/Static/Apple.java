@@ -26,16 +26,16 @@ public class Apple {
         this.xCoord=x; 
         this.yCoord=y; 
         this.born = Player.stepCount;
-        this.dead = born + 400;
         this.isFresh = isGood();
+        
     }
     public boolean isGood() {
-    	if (good) {
-    		if (Player.stepCount < 600) {
-    			return true;
+    	if (isFresh) {
+    		if (Player.stepCount > (born+600)) {
+    			good = false;
     		}
     		else {
-    			return false;
+    			good = true;
     			
     		}
 		}
