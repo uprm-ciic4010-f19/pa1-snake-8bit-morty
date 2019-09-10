@@ -162,12 +162,7 @@ public class Player {
 				if (!handler.getWorld().body.isEmpty()) {
 					
 				score = -Math.sqrt(2 * score + 1);/////
-				handler.getWorld().playerLocation[handler.getWorld().body.getLast().x][handler.getWorld().body.getLast().y] = false;
-				handler.getWorld().body.removeLast();
-
-				handler.getWorld().playerLocation[handler.getWorld().body.getLast().x][handler.getWorld().body.getLast().y] = false;
-				handler.getWorld().body.removeLast();
-				handler.getWorld().appleLocation[x][y] = false;
+				
 				}
 				else {
 					kill();

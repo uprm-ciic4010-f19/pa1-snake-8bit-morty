@@ -29,6 +29,7 @@ public class GameOverState extends State {
 		  uiManager.addObjects(new UIImageButton(56, (400+(64+16))+(64+16), 128, 64, Images.restart, () -> {
 	            handler.getMouseManager().setUimanager(null);
 	            handler.getGame().reStart();
+	            Player.trackscore = 0;
 	            State.setState(handler.getGame().gameState);
 	        }));
 
