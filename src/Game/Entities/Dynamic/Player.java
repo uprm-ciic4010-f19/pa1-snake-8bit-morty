@@ -155,18 +155,28 @@ public class Player {
 		if (handler.getWorld().appleLocation[xCoord][yCoord]) {
 			Eat();
 			speed -= 8;
+			System.out.println(handler.getWorld().body.size());
 			if (Apple.isGood()) {
 				score = Math.sqrt(2 * score + 1);/////
+				
 			}
 			if (!Apple.isGood()) {
 				if (!handler.getWorld().body.isEmpty()) {
-					
-				score = -Math.sqrt(2 * score + 1);/////
-				
+					if (handler.getWorld().body.size() > 1) {
+					score = -Math.sqrt(2 * score + 1);/////
+					handler.getWorld().playerLocation[handler.getWorld().body.getLast().x][handler.getWorld().body.getLast().y] = false;
+					handler.getWorld().body.removeLast();
+					handler.getWorld().playerLocation[handler.getWorld().body.getLast().x][handler.getWorld().body.getLast().y] = false;
+					handler.getWorld().body.removeLast();
+					}
+					else {
+						kill();
+					}
 				}
 				else {
 					kill();
 				}
+				tick();	
 			}
 			trackscore = score;
 			System.out.println(score);

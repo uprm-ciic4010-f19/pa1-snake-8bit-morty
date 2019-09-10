@@ -30,7 +30,7 @@ public class Apple {
 	        this.born = Player.stepCount;
 	        
 //	        STEP TIMMER
-	        Apple.dead = born + 50;
+	        Apple.dead = born + 50; //TIME IN THE FUTURE FOR APPLE TO ROT
 	     
 	        
 	    }
