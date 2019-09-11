@@ -29,10 +29,8 @@ public class Apple {
 	        this.yCoord=y; 
 	        this.born = Player.stepCount;
 	        
-//	        STEP TIMMER
+//	        STEP TIMER
 	        Apple.dead = born + 50; //TIME IN THE FUTURE FOR APPLE TO ROT
-	     
-	        
 	    }
 	  
 	    public static boolean isGood() {

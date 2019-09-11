@@ -9,6 +9,8 @@ import UI.UIManager;
 
 import java.awt.*;
 
+import Game.Entities.Dynamic.Player;
+
 /**
  * Created by AlexVR on 7/1/2018.
  */
@@ -27,6 +29,17 @@ public class MenuState extends State {
             public void onClick() {
                 handler.getMouseManager().setUimanager(null);
                 handler.getGame().reStart();
+                handler.getWorld().player.speed = 0;
+                State.setState(handler.getGame().gameState);
+            }
+        }));
+        
+        uiManager.addObjects(new UIImageButton(handler.getWidth()/2-64, handler.getHeight()/2+70, 128, 64, Images.butstart, new ClickListlener() {
+            @Override
+            public void onClick() {
+                handler.getMouseManager().setUimanager(null);
+                handler.getGame().reStart();
+                handler.getWorld().player.speed = 15;
                 State.setState(handler.getGame().gameState);
             }
         }));

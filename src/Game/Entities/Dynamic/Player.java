@@ -20,7 +20,8 @@ public class Player {
 	public double score;
 	public static double trackscore = 0;////
 	public static int stepCount = 0;
-	public int moveCounter, speed = 2;
+
+	public int moveCounter, speed;
 
 	public String direction;// is your first name one?
 
