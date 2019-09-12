@@ -127,7 +127,7 @@ public class GameSetUp implements Runnable {
         int fps = 60;
         double timePerTick = 1000000000 / fps;
         double delta = 0;
-        long now;
+        long now; 
         long lastTime = System.nanoTime();
         long timer = 0;
         int ticks = 0;
