@@ -20,6 +20,11 @@ public class Player {
 	public double score;
 	public static double trackscore = 0;////
 	public static int stepCount = 0;
+//	snake color
+	Color playerCol = new Color(133, 209, 95);
+//	apple colors
+	Color badCol = new Color(139,69,19);
+
 
 	public int moveCounter, speed;
 
@@ -37,7 +42,7 @@ public class Player {
 		stepCount = 0;
 
 	}
-
+ 
 	public void tick() {
 		moveCounter++;
 //        	MOOVE
@@ -199,7 +204,7 @@ public class Player {
 			for (int j = 0; j < handler.getWorld().GridWidthHeightPixelCount; j++) {
 
 				if (playeLocation[i][j] || handler.getWorld().appleLocation[i][j]) {
-					g.setColor(Color.GREEN);
+					g.setColor(playerCol );
 					g.fillRect((i * handler.getWorld().GridPixelsize), (j * handler.getWorld().GridPixelsize),
 							handler.getWorld().GridPixelsize, handler.getWorld().GridPixelsize);
 
@@ -209,7 +214,8 @@ public class Player {
 						g.setColor(Color.RED);
 //						GOOD APPLE
 					} else {
-						g.setColor(Color.BLACK);
+//						g.setColor(Color.BLACK);
+						g.setColor(badCol);
 //						BAD APPLE
 					}
 					g.fillRect((i * handler.getWorld().GridPixelsize), (j * handler.getWorld().GridPixelsize),
@@ -342,7 +348,6 @@ public class Player {
 			for (int j = 0; j < handler.getWorld().GridWidthHeightPixelCount; j++) {
 
 				State.setState(handler.getGame().gameoverState);
-//				handler.getWorld().playerLocation[tail.x][tail.y] = true;
 
 //				put false in the following line to break game
 				handler.getWorld().playerLocation[i][j] = false;
@@ -361,6 +366,7 @@ public class Player {
 	}
 
 	public static void paintComponent(Graphics g, int x, int y) {/////
+//		text color
 		g.setColor(Color.GREEN);
 		g.setFont(new Font("Tahoma", Font.BOLD, 44));
 		g.drawString("Score: " + trackscore, x, y);

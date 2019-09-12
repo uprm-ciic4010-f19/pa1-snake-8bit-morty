@@ -20,7 +20,7 @@ public class DisplayScreen {
     public DisplayScreen(String title, int width, int height){
         this.title = title;
         this.width = width;
-        this.height = height;
+        this.height = height; 
 
 
 
@@ -48,8 +48,9 @@ public class DisplayScreen {
         canvas.setMinimumSize(new Dimension(width, height));
         canvas.setFocusable(false);
         
-//        Back
-        Color col = new Color(148,108,212);
+//        Back grouncd col
+//        Color col = new Color(148,108,212);
+      Color col = new Color(164, 116, 188);
 
         canvas.setBackground(col);
 
@@ -64,5 +65,10 @@ public class DisplayScreen {
     public JFrame getFrame(){
         return frame;
     }
+    public void update(Graphics g) {
+    	int r =  1 + (int)(Math.random() * 1000), gg =  1 + (int)(Math.random() * 1000), b =  1 + (int)(Math.random() * 1000);
+//    	Color purplCol = new Color(r,g,b)
+//    	GENERATE RANDOM BACKGROUND COLOR
+    	}
 
 }

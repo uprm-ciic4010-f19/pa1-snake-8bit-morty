@@ -12,6 +12,6 @@ public class Tail {
         this.y=y;
         handler.getWorld().playerLocation[x][y]=true;
         
-    }
+    } 
 
 }

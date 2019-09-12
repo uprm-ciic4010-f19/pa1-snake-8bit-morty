@@ -41,9 +41,9 @@ public class Images {
 //        	ADDED IMGES 
         	title = ImageIO.read(getClass().getResourceAsStream("/Sheets/Main.png"));
         	altEasy[0] = ImageIO.read(getClass().getResourceAsStream("/Buttons/Easy.png"));
-        	altEasy[1] = ImageIO.read(getClass().getResourceAsStream("/Buttons/Easy.png"));
+        	altEasy[1] = ImageIO.read(getClass().getResourceAsStream("/Buttons/Easy-1.png"));
         	altHard[0] = ImageIO.read(getClass().getResourceAsStream("/Buttons/Hard.png"));
-        	altHard[1] = ImageIO.read(getClass().getResourceAsStream("/Buttons/Hard.png"));
+        	altHard[1] = ImageIO.read(getClass().getResourceAsStream("/Buttons/Hard-1.png"));
         	menu[0] = ImageIO.read(getClass().getResourceAsStream("/Buttons/Menu.png"));
         	menu[1] = ImageIO.read(getClass().getResourceAsStream("/Buttons/Menu-1.png"));
         	Resume[0] = ImageIO.read(getClass().getResourceAsStream("/Buttons/Resume.png"));

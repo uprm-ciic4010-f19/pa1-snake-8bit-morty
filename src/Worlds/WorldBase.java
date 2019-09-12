@@ -28,8 +28,8 @@ public abstract class WorldBase {
 
     public Player player;
     
-//    Color gusano
-	Color col = new Color(218,112,214,1);
+//    Color grid
+    Color col = new Color(164,116,188,0);
 
     protected Handler handler;
 
@@ -58,7 +58,7 @@ public abstract class WorldBase {
    
     public void render(Graphics g){ 
 
-        for (int i = 0; i <= 800; i = i + GridPixelsize) {
+        for (int i = 0; i <= 800; i = i + GridPixelsize) { 
         	
         	
         	g.setColor(col);            
