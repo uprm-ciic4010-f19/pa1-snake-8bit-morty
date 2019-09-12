@@ -56,7 +56,7 @@ public class Images {
 //        	STOCK IMAGES
         	
             Pause = ImageIO.read(getClass().getResourceAsStream("/Buttons/Pause.png"));
-            gOver = ImageIO.read(getClass().getResourceAsStream("/Sheets/GameOver.jpg")); 
+            gOver = ImageIO.read(getClass().getResourceAsStream("/Sheets/gOver.jpg")); 
 
             BTitle[0] = ImageIO.read(getClass().getResourceAsStream("/Buttons/BTitle.png"));
             BTitle[1] = ImageIO.read(getClass().getResourceAsStream("/Buttons/BTitleP.png"));
