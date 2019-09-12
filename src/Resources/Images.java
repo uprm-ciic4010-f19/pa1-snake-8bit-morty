@@ -44,22 +44,22 @@ public class Images {
         	altEasy[1] = ImageIO.read(getClass().getResourceAsStream("/Buttons/Easy.png"));
         	altHard[0] = ImageIO.read(getClass().getResourceAsStream("/Buttons/Hard.png"));
         	altHard[1] = ImageIO.read(getClass().getResourceAsStream("/Buttons/Hard.png"));
+        	menu[0] = ImageIO.read(getClass().getResourceAsStream("/Buttons/Menu.png"));
+        	menu[1] = ImageIO.read(getClass().getResourceAsStream("/Buttons/Menu-1.png"));
+        	Resume[0] = ImageIO.read(getClass().getResourceAsStream("/Buttons/Resume.png"));
+        	Resume[1] = ImageIO.read(getClass().getResourceAsStream("/Buttons/Resume-1.png"));
+        	Options[0] = ImageIO.read(getClass().getResourceAsStream("/Buttons/Options.png"));
+        	Options[1] = ImageIO.read(getClass().getResourceAsStream("/Buttons/Options-1.png"));
         	
 //        	STOCK IMAGES
         	
             Pause = ImageIO.read(getClass().getResourceAsStream("/Buttons/Pause.png"));
-            gOver = ImageIO.read(getClass().getResourceAsStream("/Sheets/GameOver.jpg"));
-            menu[0] = ImageIO.read(getClass().getResourceAsStream("/Buttons/menuBtn.png"));
-            menu[1] = ImageIO.read(getClass().getResourceAsStream("/Buttons/menuBtn.png"));
+            gOver = ImageIO.read(getClass().getResourceAsStream("/Sheets/GameOver.jpg")); 
             restart[0] = ImageIO.read(getClass().getResourceAsStream("/Buttons/restartBtn.png"));
             restart[1] = ImageIO.read(getClass().getResourceAsStream("/Buttons/restartBtn.png"));
 
-            Resume[0] = ImageIO.read(getClass().getResourceAsStream("/Buttons/Resume.png"));
-            Resume[1] = ImageIO.read(getClass().getResourceAsStream("/Buttons/ResumeP.png"));
             BTitle[0] = ImageIO.read(getClass().getResourceAsStream("/Buttons/BTitle.png"));
             BTitle[1] = ImageIO.read(getClass().getResourceAsStream("/Buttons/BTitleP.png"));
-            Options[0] = ImageIO.read(getClass().getResourceAsStream("/Buttons/Options.png"));
-            Options[1] = ImageIO.read(getClass().getResourceAsStream("/Buttons/OptionsP.png"));
            
             butstart[0]= ImageIO.read(getClass().getResourceAsStream("/Buttons/NormBut.png"));//normbut
             butstart[1]= ImageIO.read(getClass().getResourceAsStream("/Buttons/HoverBut.png"));//hoverbut
