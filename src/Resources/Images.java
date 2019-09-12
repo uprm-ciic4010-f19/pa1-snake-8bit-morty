@@ -50,13 +50,13 @@ public class Images {
         	Resume[1] = ImageIO.read(getClass().getResourceAsStream("/Buttons/Resume-1.png"));
         	Options[0] = ImageIO.read(getClass().getResourceAsStream("/Buttons/Options.png"));
         	Options[1] = ImageIO.read(getClass().getResourceAsStream("/Buttons/Options-1.png"));
+        	restart[0] = ImageIO.read(getClass().getResourceAsStream("/Buttons/restart.png"));
+        	restart[1] = ImageIO.read(getClass().getResourceAsStream("/Buttons/restart-1.png"));
         	
 //        	STOCK IMAGES
         	
             Pause = ImageIO.read(getClass().getResourceAsStream("/Buttons/Pause.png"));
             gOver = ImageIO.read(getClass().getResourceAsStream("/Sheets/GameOver.jpg")); 
-            restart[0] = ImageIO.read(getClass().getResourceAsStream("/Buttons/restartBtn.png"));
-            restart[1] = ImageIO.read(getClass().getResourceAsStream("/Buttons/restartBtn.png"));
 
             BTitle[0] = ImageIO.read(getClass().getResourceAsStream("/Buttons/BTitle.png"));
             BTitle[1] = ImageIO.read(getClass().getResourceAsStream("/Buttons/BTitleP.png"));
