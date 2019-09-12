@@ -14,6 +14,9 @@ public class Images {
     public static BufferedImage[] butstart;
     public static BufferedImage title;
     public static BufferedImage Pause;
+    public static BufferedImage[] altHard;
+    public static BufferedImage[] altTitle;
+	public static BufferedImage[] altEasy;
     public static BufferedImage gOver;
     public static BufferedImage[] Resume;
     public static BufferedImage[] BTitle;
@@ -31,13 +34,21 @@ public class Images {
         Options = new BufferedImage[2];
         menu = new BufferedImage[2];
         restart = new BufferedImage[2];
+        altEasy = new BufferedImage[2];
+        altHard = new BufferedImage[2];
 
         try {
-
-       
-            title = ImageIO.read(getClass().getResourceAsStream("/Sheets/Title.png"));
+//        	ADDED IMGES 
+        	title = ImageIO.read(getClass().getResourceAsStream("/Sheets/Main.png"));
+        	altEasy[0] = ImageIO.read(getClass().getResourceAsStream("/Buttons/Easy.png"));
+        	altEasy[1] = ImageIO.read(getClass().getResourceAsStream("/Buttons/Easy.png"));
+        	altHard[0] = ImageIO.read(getClass().getResourceAsStream("/Buttons/Hard.png"));
+        	altHard[1] = ImageIO.read(getClass().getResourceAsStream("/Buttons/Hard.png"));
+        	
+//        	STOCK IMAGES
+        	
             Pause = ImageIO.read(getClass().getResourceAsStream("/Buttons/Pause.png"));
-            gOver = ImageIO.read(getClass().getResourceAsStream("/Sheets/GameOver.jpg"));//
+            gOver = ImageIO.read(getClass().getResourceAsStream("/Sheets/GameOver.jpg"));
             menu[0] = ImageIO.read(getClass().getResourceAsStream("/Buttons/menuBtn.png"));
             menu[1] = ImageIO.read(getClass().getResourceAsStream("/Buttons/menuBtn.png"));
             restart[0] = ImageIO.read(getClass().getResourceAsStream("/Buttons/restartBtn.png"));
