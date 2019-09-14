@@ -24,8 +24,7 @@ public class Player {
 //	snake color
 	Color playerCol = new Color(133, 209, 95);
 //	apple colors
-	Color badCol = new Color(139,69,19);
-
+	Color badCol = new Color(139, 69, 19);
 
 	public int moveCounter, speed;
 
@@ -43,7 +42,7 @@ public class Player {
 		stepCount = 0;
 
 	}
- 
+
 	public void tick() {
 		moveCounter++;
 //        	MOOVE
@@ -164,26 +163,26 @@ public class Player {
 			speed -= 8;
 			System.out.println(handler.getWorld().body.size());
 			if (Apple.isGood()) {
-				score = Math.sqrt(2 * score + 1);/////
-				
+				score += Math.sqrt(2 * score + 1);/////
+
 			}
 			if (!Apple.isGood()) {
 				if (!handler.getWorld().body.isEmpty()) {
 					if (handler.getWorld().body.size() > 1) {
-					score = -Math.sqrt(2 * score + 1);/////
-					handler.getWorld().playerLocation[handler.getWorld().body.getLast().x][handler.getWorld().body.getLast().y] = false;
-					handler.getWorld().body.removeLast();
-					handler.getWorld().playerLocation[handler.getWorld().body.getLast().x][handler.getWorld().body.getLast().y] = false;
-					handler.getWorld().body.removeLast();
-					}
-					else {
+						score -= Math.sqrt(2 * score + 1);/////
+						handler.getWorld().playerLocation[handler.getWorld().body.getLast().x][handler.getWorld().body
+								.getLast().y] = false;
+						handler.getWorld().body.removeLast();
+						handler.getWorld().playerLocation[handler.getWorld().body.getLast().x][handler.getWorld().body
+								.getLast().y] = false;
+						handler.getWorld().body.removeLast();
+					} else {
 						kill();
 					}
-				}
-				else {
+				} else {
 					kill();
 				}
-				tick();	
+				tick();
 			}
 			trackscore = score;
 			System.out.println(score);
@@ -198,14 +197,16 @@ public class Player {
 		}
 
 	}
+	
 
 	public void render(Graphics g, Boolean[][] playeLocation) {
-
+		
+		
 		for (int i = 0; i < handler.getWorld().GridWidthHeightPixelCount; i++) {
 			for (int j = 0; j < handler.getWorld().GridWidthHeightPixelCount; j++) {
 
 				if (playeLocation[i][j] || handler.getWorld().appleLocation[i][j]) {
-					g.setColor(playerCol );
+					g.setColor(playerCol);
 					g.fillRect((i * handler.getWorld().GridPixelsize), (j * handler.getWorld().GridPixelsize),
 							handler.getWorld().GridPixelsize, handler.getWorld().GridPixelsize);
 
@@ -368,7 +369,9 @@ public class Player {
 
 	public static void paintComponent(Graphics g, int x, int y) {/////
 //		text color
-		g.setColor(Color.GREEN);
+		Color c = new Color(4, 116, 60);
+		g.setColor(c);
+
 		g.setFont(new Font("Tahoma", Font.BOLD, 44));
 		g.drawString("Score: " + trackscore, x, y);
 

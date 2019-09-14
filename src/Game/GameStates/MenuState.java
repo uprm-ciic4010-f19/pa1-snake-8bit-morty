@@ -39,7 +39,7 @@ public class MenuState extends State {
             public void onClick() {
                 handler.getMouseManager().setUimanager(null);
                 handler.getGame().reStart(); 
-                handler.getWorld().player.speed = 0;
+                handler.getWorld().player.speed = 3;
                 State.setState(handler.getGame().gameState);
             }
         }));

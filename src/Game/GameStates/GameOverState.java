@@ -45,7 +45,7 @@ public class GameOverState extends State {
 	public void render(Graphics g) {
 		g.drawImage(Images.gOver,0,0,handler.getWidth(),handler.getHeight(),null);
         uiManager.Render(g);
-        Player.paintComponent(g, 300, 64);
+        Player.paintComponent(g, 30, 64);
 	}
 
 }

@@ -22,30 +22,28 @@ public class Apple {
 	public static int dead;
 	public static boolean good;
 
-	   public Apple(Handler handler,int x, int y){
-		   good = true;
-	        this.handler=handler;
-	        this.xCoord=x; 
-	        this.yCoord=y; 
-	        this.born = Player.stepCount;
-	        
-//	        STEP TIMER
-	        Apple.dead = born + 50; //TIME IN THE FUTURE FOR APPLE TO ROT
-	    }
-	  
-	    public static boolean isGood() {
-	    	
-	    	if (Player.stepCount > dead) {
-				good = false;
-			}
-	        else {
-	        	good = true;
-	        }
-	    	if (Player.stepCount % 50 == 0) {				
-	    		System.out.println("Apple is " + good + " >> " + Player.stepCount);
-			}
-			return good;
-	    }
+	public Apple(Handler handler, int x, int y) {
+		good = true;
+		this.handler = handler;
+		this.xCoord = x;
+		this.yCoord = y;
+		this.born = Player.stepCount;
 
+//	        STEP TIMER
+		Apple.dead = born + 60; // TIME IN THE FUTURE FOR APPLE TO ROT
 	}
 
+	public static boolean isGood() {
+
+		if (Player.stepCount > dead) {
+			good = false;
+		} else {
+			good = true;
+		}
+		if (Player.stepCount % 60 == 0) {
+			System.out.println("Apple is " + good + " >> " + Player.stepCount);
+		}
+		return good;
+	}
+
+}
