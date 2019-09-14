@@ -52,8 +52,6 @@ public class DisplayScreen {
         canvas.setMinimumSize(new Dimension(width, height));
         canvas.setFocusable(false);
         
-//        Back grouncd col
-//        Color col = new Color(148,108,212);
         
         canvas.setBackground(rgbCol());
 
@@ -67,9 +65,11 @@ public class DisplayScreen {
     public Canvas getCanvas(){
         return canvas;
     }
+    
     private static Color rgbCol() {
    	 Color[] bgColors = new Color[11];
    	    Random r = new Random();
+//   	    PURPLE BACKGROUND COLORS
    	   Color col = new Color(164, 116, 188);
    	      bgColors[0] = new Color(216,191,216);
    	      bgColors[1] = new Color(221,160,221);

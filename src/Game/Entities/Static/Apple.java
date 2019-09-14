@@ -28,13 +28,11 @@ public class Apple {
 		this.xCoord = x;
 		this.yCoord = y;
 		this.born = Player.stepCount;
-
 //	        STEP TIMER
 		Apple.dead = born + 60; // TIME IN THE FUTURE FOR APPLE TO ROT
 	}
 
 	public static boolean isGood() {
-
 		if (Player.stepCount > dead) {
 			good = false;
 		} else {

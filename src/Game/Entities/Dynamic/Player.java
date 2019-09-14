@@ -216,7 +216,6 @@ public class Player {
 						g.setColor(Color.RED);
 //						GOOD APPLE
 					} else {
-//						g.setColor(Color.BLACK);
 						g.setColor(badCol);
 //						BAD APPLE
 					}
